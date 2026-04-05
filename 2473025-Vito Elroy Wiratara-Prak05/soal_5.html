@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>2473025-Vito Elroy Wiratara</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 20px;
+        }
+
+        #navigate {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #navigate>li {
+            float: left;
+            position: relative;
+            margin-right: 3px;
+        }
+
+        #navigate li a {
+            display: block;
+            width: 120px;
+            padding: 5px 0;
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            background-color: white;
+
+            border-style: dotted;
+            border-color: grey;
+            border-width: 2px;
+        }
+
+        #navigate li a:hover {
+            background-color: black;
+            color: white;
+        }
+
+        #submenu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 28px;
+            left: 0;
+            display: none;
+        }
+
+        #submenu li {
+            float: none;
+            margin-right: 0;
+            margin-top: -2px;
+        }
+
+        #navigate li:hover>#submenu {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="navigate">
+        <li><a href="#">Home</a></li>
+
+        <li>
+            <a href="#">News</a>
+            <ul id="submenu">
+                <li><a href="#">Sports</a></li>
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Movie</a></li>
+            </ul>
+        </li>
+
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">About</a></li>
+    </ul>
+
+</body>
+
+</html>
