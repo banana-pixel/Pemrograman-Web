@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2473025 - Vito Elroy Wiratara</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 350px;
+        }
+        td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        .label-kiri {
+            font-weight: bold;
+            color: blue;
+            text-align: right;
+            width: 80px;
+        }
+        .tengah {
+            text-align: center;
+        }
+        button {
+            color: blue;
+            font-weight: bold;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td class="label-kiri">Input :</td>
+            <td><input type="text" id="inputData"></td>
+        </tr>
+        <tr>
+            <td class="label-kiri">Output :</td>
+            <td><input type="text" id="outputData" readonly></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tengah">
+                <select id="pilihanMode">
+                    <option value="1">decimal-biner</option>
+                    <option value="2">biner-decimal</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="tengah">
+                <button onclick="prosesKonversi()">PROSES</button>
+                <button onclick="resetData()">RESET</button>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        function prosesKonversi() {
+            let input = document.getElementById("inputData").value;
+            let mode = document.getElementById("pilihanMode").value;
+            let output = document.getElementById("outputData");
+
+            if (input === "") {
+                alert("Input tidak boleh kosong.");
+                return;
+            }
+            if (mode === "1") {
+
+                let angka = parseInt(input);
+                
+                if (isNaN(angka) || angka < 0 || angka > 255) {
+                    alert("Input harus angka 0 - 255");
+                    return;
+                }
+
+                let hasil= "";
+                let temp= angka;
+
+                if (temp === 0) {
+                    hasil = "0";
+                } else {
+                    while (temp > 0) {
+                        let sisa = temp % 2;
+                        hasil = sisa + hasil;
+                        temp = Math.floor(temp / 2);
+                    }
+                }
+
+                while (hasil.length < 8) {
+                    hasil = "0" + hasil;
+                }
+
+                output.value = hasil;
+
+            } else {
+                if (input.length > 8) {
+                    alert("Biner maksimal 8 digit!");
+                    return;
+                }
+                for (let i = 0; i < input.length; i++) {
+                    if (input[i] !== "0" && input[i] !== "1") {
+                        alert("Input hanya boleh angka 0 dan 1!");
+                        return;
+                    }
+                }
+
+                let hasilDesimal = 0;
+                let pangkat= 0;
+
+                for (let i = input.length - 1; i >= 0; i--) {
+                    if (input[i] === "1") {
+                        hasilDesimal += Math.pow(2, pangkat);
+                    }
+                    pangkat++;
+                }
+
+                output.value = hasilDesimal;
+            }
+        }
+        function resetData() {
+            document.getElementById("inputData").value = "";
+            document.getElementById("outputData").value = "";
+        }
+    </script>
+
+</body>
+</html>

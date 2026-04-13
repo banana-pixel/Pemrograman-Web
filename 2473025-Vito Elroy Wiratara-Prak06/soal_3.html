@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2473025 - Vito Elroy Wiratara</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 800px;
+            height: 600px;
+        }
+        td {
+            border: 1px solid white;
+        }
+        .isi-piramida {
+            background-color: orange;
+        }
+        .kosong {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    Tinggi Piramida: <input type="text" id="tinggi">
+    <button onclick="proses()">proses</button>
+
+    <div id="hasil"></div>
+    <script>
+        function proses() {
+            let input = document.getElementById("tinggi").value;
+            let t = parseInt(input);
+
+            if (isNaN(t) || t <= 0) {
+                alert("Masukkan angka yang valid!");
+                return;
+            }
+
+
+            let tabel = "<table>";
+            let kolomTotal = (2 * t) - 1;
+            let tengah = t;
+
+            for (let i = 1; i <= t;i++) {
+                tabel += "<tr>";
+
+                let kiri = tengah - (i - 1);
+                let kanan = tengah + (i - 1);
+                for (let j = 1; j <= kolomTotal;j++) {
+                    if (j >= kiri && j <= kanan) {
+                        tabel += "<td class='isi-piramida'></td>";
+                    } else {
+                        tabel += "<td class='kosong'></td>";
+                    }
+                }
+                tabel += "</tr>";
+            }
+
+            tabel += "</table>";
+            document.getElementById("hasil").innerHTML = tabel;
+        }
+    </script>
+
+</body>
+</html>

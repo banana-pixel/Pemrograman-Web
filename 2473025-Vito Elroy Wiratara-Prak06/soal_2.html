@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2473025 - Vito Elroy Wiratara</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 20px;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 8px;
+        }
+        td {
+            border: 2px solid black;
+            width: 55px;
+            height: 55px;
+            text-align: center;
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="hasil"></div>
+
+    <script>
+
+        let n;
+        let masukan;
+
+        do {
+            masukan = prompt("A number?");
+            n = parseInt(masukan);
+        } while (isNaN(n) || masukan === null || masukan.trim() === "");
+
+        let isiTabel = "<table>";
+        for (let i = 1; i <= n; i++) {
+            isiTabel += "<tr>";
+            isiTabel += "<td>" + i + "</td>";
+            isiTabel += "<td>x</td>";
+            isiTabel += "<td>" + n + "</td>";
+            isiTabel += "<td>=</td>";
+            isiTabel += "<td>" + (i * n) + "</td>";
+            isiTabel += "</tr>";
+        }
+
+        
+        isiTabel += "</table>";
+
+        document.getElementById("hasil").innerHTML = isiTabel;
+    </script>
+
+</body>
+</html>
