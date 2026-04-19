@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>2473025 - Vito Elroy Wiratara</title>
+    <style>
+    body {
+        font-family: sans-serif;
+    }
+    .container {
+        border: 2px solid #ccc;
+        padding: 10px;
+        display: inline-block;
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    table {
+        border-collapse: collapse;
+    }
+    td {
+        padding: 5px;
+        vertical-align: middle;
+    }
+    .label-text {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 22px;
+    }
+    .input-text {
+        width: 170px;
+        padding: 2px;
+    }
+    .btn-add {
+        padding: 2px 10px;
+    }
+    select {
+        width: 110px;
+        padding: 2px;
+    }
+    </style>
+    </head>
+<body>
+
+<div class="container">
+    <table>
+        <tr>
+            <td class="label-text">Data</td>
+            <td><input type="text" id="txtData" class="input-text"></td>
+        </tr>
+        <tr>
+            <td><button class="btn-add" onclick="tambahData()">Add</button></td>
+            <td>
+                <select id="cbOperasi" onchange="jalankanOperasi()">
+                    <option value="">Pilih Operasi</option>
+                    <option value="Display">Display</option>
+                    <option value="Count">Count</option>
+                    <option value="Sum">Sum</option>
+                    <option value="Average">Average</option>
+                    <option value="Max">Max</option>
+                    <option value="Min">Min</option>
+                    <option value="Ganjil">Ganjil</option>
+                    <option value="Genap">Genap</option>
+                    <option value="Hapus">Hapus</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-text">Hasil</td>
+            <td><input type="text" id="txtHasil" class="input-text"></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+var arrayData = [];
+
+function tambahData() {
+    var inputVal = document.getElementById("txtData").value;
+    if (inputVal !== "") {
+        arrayData[arrayData.length] = parseInt(inputVal);
+        document.getElementById("txtData").value = "";
+    }
+}
+function jalankanOperasi() {
+    var operasi = document.getElementById("cbOperasi").value;
+    var hasilOutput = document.getElementById("txtHasil");
+    var jumlahData = arrayData.length;
+    if (operasi == "Display") {
+        var isi = "";
+        for (var i = 0; i < jumlahData; i++) {
+            isi += arrayData[i];
+            if (i < jumlahData - 1) {
+                isi += ", ";
+            }
+        }
+        hasilOutput.value = isi;
+    } 
+    else if (operasi == "Count") {
+        hasilOutput.value = jumlahData;
+    } 
+    else if (operasi == "Sum") {
+        var total = 0;
+        for (var i = 0; i < jumlahData; i++) {
+            total += arrayData[i];
+        }
+        hasilOutput.value = total;
+    } 
+    else if (operasi == "Average") {
+        if (jumlahData > 0) {
+            var total = 0;
+            for (var i = 0; i < jumlahData; i++) {
+                total += arrayData[i];
+            }
+            hasilOutput.value = total / jumlahData;
+        } else {
+            hasilOutput.value = 0;
+        }
+    } 
+    else if (operasi == "Max") {
+        if (jumlahData > 0) {
+            var nilaiMax = arrayData[0];
+            for (var i = 1; i < jumlahData; i++) {
+                if (arrayData[i] > nilaiMax) {
+                    nilaiMax = arrayData[i];
+                }
+            }
+            hasilOutput.value = nilaiMax;
+        } else {
+            hasilOutput.value = "";
+        }
+    } 
+    else if (operasi == "Min") {
+        if (jumlahData > 0) {
+            var nilaiMin = arrayData[0];
+            for (var i = 1; i < jumlahData; i++) {
+                if (arrayData[i] < nilaiMin) {
+                    nilaiMin = arrayData[i];
+                }
+            }
+            hasilOutput.value = nilaiMin;
+        } else {
+            hasilOutput.value = "";
+        }
+    } 
+    else if (operasi == "Ganjil") {
+        var isi = "";
+        for (var i = 0; i < jumlahData; i++) {
+            if (arrayData[i] % 2 !== 0) {
+                if (isi !== "") {
+                    isi += ", ";
+                }
+                isi += arrayData[i];
+            }
+        }
+        hasilOutput.value = isi;
+    } 
+    else if (operasi == "Genap") {
+        var isi = "";
+        for (var i = 0; i < jumlahData; i++) {
+            if (arrayData[i] % 2 === 0) {
+                if (isi !== "") {
+                    isi += ", ";
+                }
+                isi += arrayData[i];
+            }
+        }
+        hasilOutput.value = isi;
+    } 
+    else if (operasi == "Hapus") {
+        arrayData = [];
+        hasilOutput.value = "";
+    }
+}
+</script>
+</body>
+</html>

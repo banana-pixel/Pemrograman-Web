@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>2473025 - Vito Elroy Wiratara</title>
+        <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+        .container {
+            width: 350px;
+            padding: 15px;
+            box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.2);
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            vertical-align: top;
+        }
+        .col-label {
+            width: 60px;
+        }
+        .col-colon {
+            width: 10px;
+        }
+        .input-text {
+            width: 230px;
+            box-sizing: border-box;
+        }
+        textarea {
+            width: 230px;
+            height: 100px;
+            box-sizing: border-box;
+            resize: none;
+        }
+        .counter-box {
+            text-align: right;
+            width: 230px;
+            margin-top: 2px;
+        }
+        #txt2 {
+            width: 60px;
+            text-align: right;
+        }
+        </style>
+    </head>
+<body>
+
+<div class="container">
+    <table>
+        <tr>
+            <td class="col-label">Judul</td>
+            <td class="col-colon">:</td>
+            <td><input type="text" class="input-text"></td>
+        </tr>
+        <tr>
+            <td class="col-label">Deskripsi</td>
+            <td class="col-colon">:</td>
+            <td>
+                <textarea onkeyup="call_onKeyPress(this)" onkeydown="call_onKeyPress(this)"></textarea>
+                <div class="counter-box">
+                    <input type="text" id="txt2" value="0/256" disabled>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script>
+function call_onKeyPress(ob){
+    var obval = ob.value;
+    
+    if(obval.length > 256){
+        ob.value = obval.substr(0, 256);
+        obval = ob.value;
+    }
+    document.getElementById("txt2").value = obval.length + "/256";
+}
+</script>
+
+</body>
+</html>

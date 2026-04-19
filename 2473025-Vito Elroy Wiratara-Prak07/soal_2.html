@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Vito Elroy Wiratara - 2473025</title>
+        <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+        table {
+            border-collapse: collapse;
+            box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);
+            margin: 20px;
+        }
+        th, td {
+            padding: 6px 12px;
+            border: 1px solid white;
+            text-align: left;
+        }
+        th {
+            background-color: #9cb59c;
+        }
+        .row-odd {
+            background-color: #a3c2ff;
+        }
+        .row-even {
+            background-color: #ffc299;
+        }
+        .row-hover {
+            background-color: #CCFFAA;
+        }
+        </style>
+    </head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Programming Language</th>
+            <th>Ratings</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row-odd" onmouseover="changeClass(this, 'row-hover')" onmouseout="changeClass(this, 'row-odd')">
+            <td>1</td>
+            <td>C</td>
+            <td>18.058%</td>
+        </tr>
+        <tr class="row-even" onmouseover="changeClass(this, 'row-hover')" onmouseout="changeClass(this, 'row-even')">
+            <td>2</td>
+            <td>Java</td>
+            <td>18.051%</td>
+        </tr>
+        <tr class="row-odd" onmouseover="changeClass(this, 'row-hover')" onmouseout="changeClass(this, 'row-odd')">
+            <td>3</td>
+            <td>C++</td>
+            <td>9.707%</td>
+        </tr>
+        <tr class="row-even" onmouseover="changeClass(this, 'row-hover')" onmouseout="changeClass(this, 'row-even')">
+            <td>4</td>
+            <td>PHP</td>
+            <td>9.662%</td>
+        </tr>
+        <tr class="row-odd" onmouseover="changeClass(this, 'row-hover')" onmouseout="changeClass(this, 'row-odd')">
+            <td>5</td>
+            <td>(Visual) Basic</td>
+            <td>6.392%</td>
+        </tr>
+    </tbody>
+</table>
+
+<script>
+function changeClass(element, classNameName) {
+    element.className = classNameName;
+}
+</script>
+
+</body>
+</html>
