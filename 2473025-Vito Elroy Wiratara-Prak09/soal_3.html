@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2473025 - Vito Elroy Wiratara</title>
+    <script src="jquery-4.0.0.min.js"></script>
+    <style>
+        .kotak {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            float: left;
+            border: 2px solid blue;
+            text-align: center;
+        }
+        
+        .container-kotak {
+            margin-top: 15px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".kotak").click(function () {
+                $(".kotak").css("background-color", "white").removeAttr("id");
+                
+                $(this).css("background-color", "red");
+                $(this).attr("id", "batas-merah");
+            });
+
+            $("#btn-change").click(function () {
+                $(".kotak").each(function (index, domEle) {
+                    if ($(domEle).attr("id") === "batas-merah") {
+                        return false; 
+                        
+                    }
+                    $(domEle).css("background-color", "yellow");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btn-change">Change colors</button>
+    <div class="container-kotak">
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+        <div class="kotak"></div>
+    </div>
+</body>
+</html>
