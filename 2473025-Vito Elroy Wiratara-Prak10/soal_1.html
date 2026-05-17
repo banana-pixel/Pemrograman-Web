@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2473025-Vito Elroy Wiratara</title>
+    <style>
+        #filterBox {
+            border: 1px solid black;
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+            padding: 5px;
+        }
+
+        td {
+            padding: 5px;
+        }
+        
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#searchBtn").click(function(){
+                let pilihan = $(":radio[name='kelas']:checked").val();
+                let fileTujuan = "";
+
+                if (pilihan == "all") {
+                    fileTujuan = "nilai.js";
+                } else if (pilihan == "A") {
+                    fileTujuan = "nilaiA.js";
+                } else if (pilihan == "B") {
+                    fileTujuan = "nilaiB.js";
+                }
+
+                $.getJSON(fileTujuan, function(data){
+                    let isiTabel = "";
+                    
+                    $.each(data.nilai, function(i, item){
+                        isiTabel += "<tr>";
+                        isiTabel += "<td>" + item.nrp + "</td>";
+                        isiTabel += "<td>" + item.nama + "</td>";
+                        isiTabel += "<td>" + item.kelas + "</td>";
+                        isiTabel += "<td>" + item.nilaiakhir + "</td>";
+                        isiTabel += "</tr>";
+                    });
+
+                    $("#tabelHasil tbody").html(isiTabel);
+                    $("#tabelHasil tbody tr:odd").css("background-color", "#FFFFCC");
+                    $("#tabelHasil tbody tr:even").css("background-color", "#CCFFAA");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h3>Selamat! Berikut adalah Daftar Mahasiswa yang mendapat <br>Nilai A Pemograman Web SI Tahun Ajaran 2023/2024</h3>
+    
+    <div id="filterBox">
+        <input type="radio" name="kelas" value="all" checked> All <br>
+        <input type="radio" name="kelas" value="A"> Kelas A <br>
+        <input type="radio" name="kelas" value="B"> Kelas B <br><br>
+        <button id="searchBtn">Search</button>
+    </div>
+
+    <table id="tabelHasil">
+        <thead>
+            <tr>
+                <th>NRP</th>
+                <th>NAMA</th>
+                <th>KELAS</th>
+                <th>NILAI AKHIR</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>2473025-Vito Elroy Wiratara</title>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        table {
+            width: 600px;
+            border-collapse: collapse;
+        }
+
+        table, tr, td {
+            border: 1px solid black;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .judul-utama {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        a {
+            color: blue;
+            text-decoration: underline;
+        }
+        
+    </style>
+    <script src="jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btnLook").click(function(){
+                $.ajax({
+                    url: "SIJson.txt",
+                    dataType: "text",
+                    success: function(responTeks) {
+                        let teksBersih = responTeks.trim();
+                        if (teksBersih.endsWith(";")) {
+                            teksBersih = teksBersih.slice(0, -1);
+                        }
+                        
+                        let parseData = JSON.parse(teksBersih);
+
+                        let htmlJudul = "<div class='judul-utama'><a href='" + parseData.link + "'>" + parseData.title + "</a></div>";
+                        $("#tdTitle").html(htmlJudul);
+
+                        let isiContent = "";
+                        $.each(parseData.items, function(i, item){
+                            isiContent += "<a href='" + item.link + "'><b>" + item.title + "</b></a><br>";
+                            isiContent += "By : " + item.author + " / <i>" + item.published + "</i><br><br>";
+                            isiContent += item.description + "<br><br>";
+                            isiContent += "Universitas : <a href='" + item.universitas.m + "'>Click Here</a><br>";
+                            isiContent += "Tag(s) : " + item.tags + "<br><br>";
+                        });
+                        $("#tdContent").html(isiContent);
+
+                        $("#tdGenerator").html("&copy; " + parseData.generator);
+                    },
+                    error: function() {
+                        alert("Gagal memuat file SIJson.txt!");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <td id="tdTitle">Title</td>
+        </tr>
+        <tr>
+            <td id="tdContent">Content</td>
+        </tr>
+        <tr>
+            <td id="tdGenerator">Generator</td>
+        </tr>
+    </table>
+    <br>
+    <button id="btnLook">Look</button>
+</body>
+</html>
